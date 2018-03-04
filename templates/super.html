@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0">#}
+    <title>{% block title %}{{ title|upper }}{% endblock %}</title>
+    {% block link %}
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+        {% load static %}
+        <link type="text/css" rel="stylesheet" href="{% static 'css/codehilite.css' %}">
+    {% endblock %}
+    <script src="https://cdn.bootcss.com/feather-icons/4.6.0/feather.min.js"></script>
+</head>
+
+<body>
+
+{% block body %}
+    Hello World!
+{% endblock %}
+
+</body>
+
+{% block script %}
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/less.js/2.7.3/less.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        $(document).ready(function () {
+            $("img").each(function () {
+                let src = $(this).attr('src')
+                if (src) {
+                    $(this).attr('data-original', src).addClass("lazyload img-responsive")
+                }
+            })
+            $("img.lazyload").lazyload({
+                effect: "fadeIn",
+                threshold: 100
+            })
+
+        })
+    </script>
+{% endblock %}
+
+</html>
+
+{# 所有网页的顶层 #}

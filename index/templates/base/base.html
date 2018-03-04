@@ -1,0 +1,21 @@
+{% extends 'super.html' %}
+
+{% block link %}
+    {{ block.super }}
+    {% load static %}
+    <link rel="stylesheet/less" href="{% static 'less/base.less' %}">
+{% endblock %}
+
+{% block body %}
+    {% block navication %}
+        {% include 'base/navigation.html' %}
+    {% endblock %}
+
+    {% block content %}
+        Hello World!
+    {% endblock %}
+
+{% endblock %}
+
+{# index[app] 的顶层模版 #}
+{# 所有的页面带有 `navigation` #}

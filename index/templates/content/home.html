@@ -1,0 +1,46 @@
+{% extends 'super.html' %}
+
+{% load static %}
+{% block link %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/less" href="{% static 'less/content/index.less' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="content-head">
+        {% if business_banner %}
+            <div class="content-head-box">
+                {% if business_banner.url %}
+                    <img class="img-responsive background"
+                         src="{{ business_banner.url }}">
+                {% elif business_banner.express %}
+                    <img class="img-responsive background"
+                         src="{{ business_banner.express.url }}">
+                {% endif %}
+                <div class="foreground"></div>
+            </div>
+
+            {% if business_banner.desc %}
+                <div class="lines">
+                    <div class="lines-left1">
+                    </div>
+                    <div class="lines-left2">
+                    </div>
+                    <div class="lines-right">
+                        {% ifchanged business_banner.desc %}
+                            {{ business_banner.desc|safe|linebreaks }}
+                        {% endifchanged %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% include 'content/common/article/article-group.html' with article_group=article_group articles=articles business_adpp=business_adpp only %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static  'js/base/nav.js' %}"></script>
+    <script src="{% static  'js/content/common/article/article-item.js' %}"></script>
+{% endblock %}

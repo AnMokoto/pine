@@ -1,0 +1,46 @@
+@import url("screen");
+
+body {
+  padding-top: @contain-padding-top;
+  padding-bottom: @contain-padding-top;
+  //background: url("@{folder-image}/whoisnext.jpg") fixed no-repeat center center;
+  //-webkit-background-size: cover;
+  //background-size: cover;
+}
+
+.footer {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(67, 181, 233, 1));
+  height: 100%;
+  color: #ffffff;
+}
+
+.nav > li > a {
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+div > ul {
+  min-height: 60px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+div > ul li {
+  position: center;
+  display: inline-block;
+  margin: 10px;
+}
+
+svg > path {
+  fill: orange;
+  fill-opacity: 0.8;
+  &:hover {
+    fill-opacity: 1.0;
+    fill: lightblue;
+  }
+}
+

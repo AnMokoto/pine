@@ -1,0 +1,40 @@
+<nav class="navbar-customize" role="navigation">
+    <div class="navbar-container">
+        <a class="navbar-brand">
+            <i data-feather="home"></i>
+        </a>
+        <div class="navbar-brand">
+            {#            <i data-feather="search"></i>#}
+        </div>
+        <div class="navbar-right navbar-menu" href="javascript:void(0)">
+            <hr class="navbar-menu-box">
+            <hr class="navbar-menu-box">
+            <hr class="navbar-menu-box">
+        </div>
+    </div>
+    <script>
+        feather.replace({class: 'feather-nav'})
+    </script>
+</nav>
+{# 导航栏 #}
+
+{% if article_group %}
+    <div class="navbar-box">
+        <div class="navbar-box-content center-block">
+            {% for group in article_group %}
+                {% load static %}
+                <a href="{% url 'home:articles' group.id %}" target="_blank">
+                    <div class="navbar-box-content-item center-block text-center">
+                        {% if group.express %}
+                            <img alt="{{ group.name }}" src="{{ group.express.url }}"
+                                 class="img-responsive">
+                        {% else %}
+                            <span style="position: relative;top: 50%;margin: 0 auto;">{{ group.name }}</span>
+                        {% endif %}
+                    </div>
+                </a>
+            {% empty %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

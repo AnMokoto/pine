@@ -1,0 +1,13 @@
+.idea/*
+
+*/settings.py
+
+*/migrations/
+*.sqlite3
+*.conf
+*.ini
+config.*
+
+*.pyc
+__pycache__
+media/

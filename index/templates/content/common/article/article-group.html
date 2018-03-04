@@ -1,0 +1,37 @@
+{% load static %}
+<div class="content-body">
+    {% include 'base/navigation.html' %}
+    <div class="content-body-box">
+        {% if business_adpp %}
+            <div class="content-body-right pull-right">
+                {% for adpp in business_adpp %}
+                    {% if adpp.display %}
+                        <div class="content-body-right-ad">
+                            <a href="{{ adpp.target|safe|default:"#" }}"
+                               target="{% if adpp.target %}
+                                    '_target'
+                                {% else %}
+                                    '_self'
+                                {% endif %}">
+                                <img class="img-responsive" src="{{ adpp.url }}" alt="{{ adpp.desc }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if business_adpp %}
+            <div class="content-body-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        {% else %}
+            <div class="content-body-left col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        {% endif %}
+        {% for article in articles %}
+            {% include 'content/common/article/article-item-0.html' with article=article only %}
+        {% empty %}
+            <span>暂无内容</span>
+        {% endfor %}
+        </div>
+
+        </div>
+    </div>
+{% include 'base/footer.html' %}

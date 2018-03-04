@@ -1,0 +1,63 @@
+@screen-xs-max: 768px; //超小屏幕 手机 (<768px)
+@screen-sm-min: 768px; //小屏幕 平板 (≥768px)
+@screen-md-min: 992px; //中等屏幕 桌面显示器 (≥992px)
+@screen-lg-min: 1200px; //大屏幕 大桌面显示器 (≥1200px)
+
+@scale-xs: 0.5;
+@scale-sm: 0.742;
+@scale-md: 0.865;
+@scale-lg: 1;
+
+@content-padding-top: 50px;
+@content-padding-left: 100px;
+@content-padding-right: 100px;
+
+@xs: ~"all and (max-width: 768px)";
+@sm: ~"all and (min-width: 768px) and (max-width: 992px)";
+@md: ~"all and (min-width: 992px) and (max-width: 1200px)";
+@lg: ~"all and (min-width: 1200px)";
+
+.print_disable() {
+  @media only print {
+    display: none;
+  }
+}
+
+.print_able() {
+  @media only print {
+    display: block;
+  }
+}
+
+@media only print {
+  a {
+    text-decoration: none;
+    -webkit-text-decoration-style: -moz-none;
+    > img {
+      visibility: hidden;
+    }
+  }
+
+  a:any-link:after {
+    content: none;
+  }
+}
+
+@svg-color: #9E9E9E;
+@svg-color-hover: orange;
+@shadow-box-color: #888888;
+
+.svg-hover() {
+  &:hover {
+    stroke: @svg-color-hover;
+    text-shadow: 0 0 2px @svg-color;
+  }
+}
+
+.box-shadow() {
+  box-shadow: 0 0 10px @shadow-box-color;
+}
+
+.text-shadow() {
+  box-shadow: 0 0 10px @svg-color-hover;
+}

@@ -1,0 +1,31 @@
+{% if  article and article.display %}
+    {% load mk %}
+    <div class="article-item-content">
+        <div class="article-item-title" data="{% url 'home:details' article.id %}">
+            <span>{{ article.title }}</span>
+        </div>
+        <hr class="article-item-lines">
+        <div class="article-item-title-sub">
+            <div class="sub-style">
+                <i data-feather="calendar"></i>
+                <span>{{ article.calendar }}</span>
+            </div>
+
+            <div class="sub-style">
+                <i data-feather="eye"></i>
+                <span>{{ article.numerous }}</span>
+            </div>
+            <script>
+                feather.replace({class: 'feather-article-item'})
+            </script>
+        </div>
+        <div class="article-item-content-0">
+            {% if article.thumbnail_content %}
+                {# markdown #}
+                {{ article.thumbnail_content|mk2html|safe }}
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+{% endif %}
+

@@ -1,0 +1,23 @@
+<footer class="footer">
+    <div class="footer-contact text-center center-block">
+        <a href="https://github.com/LxFFF" target="_blank">
+            <i data-feather="github" class="feather-foot-contact"></i>
+        </a>
+        <a href="mailto:chinaume@163.com">
+            <i data-feather="mail" class="feather-foot-contact"></i>
+        </a>
+    </div>
+    <div class="text-center" style="color: #99979c;">
+        {% now 'Y' as current_year %}
+        <h6>Thanks <a href="https://www.djangoproject.com" target="_blank">Django-1.11.10</a>. <i
+                data-feather="heart" class="feather-foot"></i> Build with <a href="{% url 'home:about' 'L' %}">@L</a>.
+            ©{{ current_year }}.
+            All Rights Reserved.</h6>
+        <script>
+            feather.replace()
+        </script>
+    </div>
+
+</footer>
+
+{# 页脚 #}

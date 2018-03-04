@@ -1,0 +1,127 @@
+@import url("../../../base/media");
+
+.media-article-item-0(@scale:@scale-lg) {
+  .article-item-content {
+    margin-bottom: @content-padding-top;
+
+    .article-item-title {
+      font-family: PingFangSC-Medium;
+      font-size: 34px * @scale;
+      color: #3c3d41;
+      //letter-spacing: -1.7px;
+      line-height: 57px * @scale;
+
+      span:hover, p:hover {
+        text-shadow: 0 0 2px orange;
+      }
+    }
+
+    .article-item-lines {
+      border: none;
+      height: 2px;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 10px;
+      border-radius: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      background-image: linear-gradient(to right, orange 0%, rgba(251, 210, 73, 0.00) 100%);
+    }
+
+    .article-item-title-sub {
+
+      ul, ol {
+        list-style: none;
+        -webkit-padding-start: 0;
+        padding-left: 0;
+      }
+
+      ul > li, ol > li {
+        list-style: none;
+        display: inline-table;
+        color: @svg-color;
+      }
+
+      .sub-style {
+        color: @svg-color;
+        text-align: left;
+        display: inline-block;
+        margin-right: 45px * @scale;
+        -webkit-margin-end: 45px * @scale;
+        position: relative;
+
+        > * {
+          display: block;
+          float: left;
+        }
+
+        span {
+          margin-left: 6px * @scale;
+          font-size: 16px;
+          line-height: 24px;
+          overflow: hidden;
+          -webkit-margin-start: 6px * @scale;
+          -webkit-align-content: center;
+        }
+      }
+    }
+
+    .feather-article-item {
+      width: 20px;
+      height: 20px;
+      stroke: @svg-color;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      .svg-hover();
+    }
+  }
+
+  .article-item-content-0 {
+    //纯文字
+    width: 100%;
+    max-width: 100%;
+    font-size: 18px;
+    color: #666d70;
+    letter-spacing: 0;
+    margin-top: 20px;
+    display: block;
+    position: relative;
+    overflow: auto;
+
+    img {
+      display: block;
+      width: 100% \9;
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+  }
+
+}
+
+@media @xs {
+  .media-article-item-0(@scale-xs);
+  .article-item-title {
+    > *:hover {
+    }
+  }
+}
+
+@media @sm {
+  .media-article-item-0(@scale-sm);
+  .article-item-title {
+    > *:hover {
+    }
+  }
+}
+
+@media @md {
+  .media-article-item-0(@scale-md)
+}
+
+//1280*820
+@media @lg {
+  .media-article-item-0(@scale-lg)
+}

@@ -1,0 +1,136 @@
+@import url("media");
+
+@navbar-height: @content-padding-top;
+@navbar-zindex: 10;
+
+.media-nav(@scale:@scale-lg) {
+  .navbar-customize {
+    height: @navbar-height;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: @navbar-zindex;
+    display: none;
+    .box-shadow();
+
+    .navbar-container {
+      padding-left: @content-padding-left * @scale;
+      padding-right: @content-padding-left * @scale;
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  .navbar-menu {
+    max-width: @navbar-height;
+    overflow: auto;
+    background: transparent !important;
+    position: relative;
+    padding: 15px !important;
+
+    .navbar-menu-box {
+      border: none;
+      height: 4px;
+      width: 25px;
+      margin-top: 5px;
+      margin-bottom: 0px;
+      border-radius: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      background: @svg-color;
+    }
+
+    @transition-duration: 500ms;
+
+    .menu-bar-top {
+      transform: rotate(45deg);
+      transform-origin: 0 50%;
+      transition-duration: @transition-duration;
+    }
+    .menu-bar-middle {
+      opacity: 0;
+      transition-duration: @transition-duration;
+    }
+    .menu-bar-bottom {
+      transition-duration: @transition-duration;
+      transform: rotate(-45deg);
+      transform-origin: 0 50%;
+    }
+
+  }
+
+  .feather-nav {
+    width: 30px;
+    height: 30px;
+    stroke: @svg-color;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    .svg-hover;
+  }
+
+  .navbar-box {
+    z-index: 2;
+    width: 100%;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    margin-top: @navbar-height/3;
+    padding: @navbar-height @content-padding-left * @scale;
+    display: none;
+
+    .navbar-box-content {
+      text-align: left;
+      border-radius: 5px;
+      background: white !important;
+      padding: @navbar-height;
+      .box-shadow();
+
+      .navbar-box-content-item {
+        display: inline-block;
+        width: 180px;
+        height: 200px;
+        background: transparent;
+        overflow: hidden;
+
+        img {
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        &:hover {
+          border-radius: 2px;
+          .box-shadow();
+        }
+      }
+    }
+  }
+}
+
+@media @xs {
+  .media-nav(@scale-xs);
+  .navbar-menu {
+    display: none;
+  }
+}
+
+@media @sm {
+  .media-nav(@scale-sm);
+  .navbar-menu {
+    display: none;
+  }
+}
+
+@media @md {
+  .media-nav(@scale-md)
+}
+
+//1280*820
+@media @lg {
+  .media-nav(@scale-lg)
+}

@@ -1,0 +1,29 @@
+{% extends 'super.html' %}
+{% load static %}
+{% block link %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/less" href="{% static 'less/content/article/article-group.less' %}">
+{% endblock %}
+
+{% block body %}
+    {% include 'content/common/article/article-group.html' with articles=articles article_group=article_group business_adpp=business only %}
+{% endblock %}
+
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static  'js/base/nav.js' %}"></script>
+    <script src="{% static  'js/content/common/article/article-item.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.navbar-customize').css({
+                display: 'block',
+                position: 'fixed',
+            })
+            $('.feather-home').click(function () {
+                $(location).attr('href', '{% url 'home:home' %}')
+            })
+            $(window).unbind('scroll')
+        })
+    </script>
+{% endblock %}
