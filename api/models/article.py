@@ -23,13 +23,13 @@ class ArticleGroup(models.Model):
 class Article(models.Model):
     tips = models.TextField(verbose_name=u"声明", editable=True, blank=True, null=True, default=u"Develop")
     # author = models.TextField(verbose_name=u"作者", blank=True, null=True, editable=True, default=u"佚名")
-    author = models.ForeignKey(User, verbose_name=u"作者", on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User, verbose_name=u"作者", on_delete=models.DO_NOTHING, )
     title = models.TextField(verbose_name=u"标题", blank=False, null=False, max_length=30)
 
     calendar = models.DateField(verbose_name=u"发布时间", auto_now_add=True)
     update = models.DateTimeField(verbose_name=u"最后更新", auto_now=True)
     numerous = models.IntegerField(verbose_name=u"点击数量", editable=True, blank=True, default=100)
-    display = models.BooleanField(verbose_name=u"展示", default=True)
+    display = models.BooleanField(verbose_name=u"展示", default=True, )
     # 采用markdown存储
     thumbnail_content = models.TextField(verbose_name=u"缩略文字", blank=True, max_length=300)
     # thumbnail = models.URLField(verbose_name=u"缩略图")
@@ -38,6 +38,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    # def get_absolute_url(self):
+    # return const.get_absolute_url('api:details', args=[self.id])
 
     def group_name(self):
         return self.group.__str__()

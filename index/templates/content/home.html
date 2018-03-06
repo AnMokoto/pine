@@ -19,21 +19,20 @@
                          src="{{ business_banner.express.url }}">
                 {% endif %}
                 <div class="foreground"></div>
+                {% if business_banner.desc %}
+                    <div class="lines">
+                        <div class="lines-left1">
+                        </div>
+                        <div class="lines-left2">
+                        </div>
+                        <div class="lines-right">
+                            {% ifchanged business_banner.desc %}
+                                {{ business_banner.desc|safe|linebreaks }}
+                            {% endifchanged %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-
-            {% if business_banner.desc %}
-                <div class="lines">
-                    <div class="lines-left1">
-                    </div>
-                    <div class="lines-left2">
-                    </div>
-                    <div class="lines-right">
-                        {% ifchanged business_banner.desc %}
-                            {{ business_banner.desc|safe|linebreaks }}
-                        {% endifchanged %}
-                    </div>
-                </div>
-            {% endif %}
         {% endif %}
     </div>
     {% include 'content/common/article/article-group.html' with article_group=article_group articles=articles business_adpp=business_adpp only %}

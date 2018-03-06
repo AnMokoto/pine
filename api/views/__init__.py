@@ -21,4 +21,4 @@ def index(request):
     :return: 默认接口主页
     """
     return render(request, 'api/index.html',
-                  {'imagePath': '/static/images/desktop/8bb75851eb1532b19b56e8ac9aaf1ca9.jpg'})
+                  {'imagePath': business.Banner(request)})

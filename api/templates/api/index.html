@@ -1,7 +1,27 @@
 {% extends 'super.html' %}
+{% block link %}
+    {{ block.super }}
+    <script src="http://dup.baidustatic.com/js/dm.js"></script>
+{% endblock %}
 
 {% block body %}
     <div class="container col-lg-12 col-sm-12 col-md-12 text-center">
-        <img src="{{ imagePath }}" style="width: 100%;height: 100%;"/>
+        <img src="{{ imagePath.express.url }}" style="width: 100%;height: 100%;"/>
     </div>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script>
+        (function () {
+            var s = "_" + Math.random().toString(36).slice(2);
+            document.write('<div id="' + s + '"></div>');
+            (window.slotbydup = window.slotbydup || []).push({
+                id: '5556373',
+                container: s,
+                size: '280,186',
+                display: 'block'
+            });
+        })();
+    </script>
 {% endblock %}

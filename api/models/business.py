@@ -34,7 +34,7 @@ class ADPP(models.Model):
     url = models.URLField(verbose_name=u"图片地址", blank=True, null=True)
     update = models.DateTimeField(verbose_name=u"更新时间", editable=False, auto_now=True)
     target = models.URLField(verbose_name=u"跳转地址", blank=True, null=True)
-    display = models.BooleanField(verbose_name=u"展示", default=False)
+    display = models.BooleanField(verbose_name=u"展示", default=False, )
 
     def __str__(self):
         return self.name

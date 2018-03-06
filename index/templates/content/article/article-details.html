@@ -2,7 +2,7 @@
 {% load static %}
 {% block link %}
     {{ block.super }}
-    <link type="text/less" rel="stylesheet" href="{% static 'less/content/article/article-details.less' %}">
+    <link type="text/less" rel="stylesheet" href="{% static 'less/content/article/article-details.less' %}" as="style">
 {% endblock %}
 
 
@@ -24,7 +24,7 @@
             <div class="article-details-box-left col-lg-2 col-md-2">
                 <div>
                     <img class="img-circle img-responsive"
-                         src="{{ article.author.avatar.url }}">
+                         src="{{ article.author.userprofile.avatar.url }}">
                     <span>{{ article.author }}</span>
                 </div>
             </div>

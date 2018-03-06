@@ -3,7 +3,11 @@
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from django.contrib.sitemaps.views import sitemap
+
+from index import views, sitemaps
+
+import articles
 
 app_name = 'home'
 
@@ -19,13 +23,13 @@ urlpatterns = [
     url(r'^info/$', views.index.info, name='info'),
     url(r'^info/(?P<name>.+)/$', views.index.info, name='info'),
 
-    # article details
-    url(r'^details/(?P<id>\d+)/$', views.articles.ArticleDetails, name='details'),
-
-    url(r'^articles/$', views.articles.Articles, name='articles'),
-    url(r'^articles/(?P<id>\d+)/$', views.articles.Articles, name='articles'),
+    # sitemap
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps.sitemaps},
+        name='django.contrib.sitemaps.views.sitemap')
 
 ]
+# articles
+urlpatterns += articles.urlpatterns
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -61,6 +61,9 @@ $(document).ready(function () {
         if (navbar_menu)
             $('.navbar-menu').click()
     })
+    $('.navbar-box').click(function () {
+        $('.navbar-menu').click()
+    })
 
     function measureNavbarBoxItem() {
         const width = $('.navbar-box').width() - 100;
