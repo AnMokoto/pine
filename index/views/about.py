@@ -1,21 +1,19 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
-from api.views import about as api
+from django.db.models import Q
+
+from users import views as users
+from django.shortcuts import get_object_or_404
 
 
-def about(request, name='L'):
-    info = request.GET.get("info", None)
-    if str(info).__eq__(str(20180214)):
-        return render(
-            request,
-            'about/index.html',
-            {
-                'title': str(name),
-                'about': api.about(request),
-                'skill': api.skill(request),
-                'experience': api.experience(request),
-                'product': api.product(request)
-            }
-        )
-    else:
-        return HttpResponse("What's wrong?")
+def about(request, name=None):
+    author = users.get_user_by(Q(username=name) | Q(email=name))
+    return render(
+        request,
+        'about/index.html',
+        {
+            'title': str(name),
+            'author': author
+        }
+    )

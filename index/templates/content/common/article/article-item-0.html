@@ -1,8 +1,8 @@
 {% if  article and article.display %}
-    {% load mk %}
+
     <div class="article-item-content">
         <div class="article-item-title" data="{% url 'home:details' article.id %}">
-            <span>{{ article.title }}</span>
+            <span>{{ article.title|truncatechars:20|force_escape }}</span>
         </div>
         <hr class="article-item-lines">
         <div class="article-item-title-sub">
@@ -22,7 +22,8 @@
         <div class="article-item-content-0">
             {% if article.thumbnail_content %}
                 {# markdown #}
-                {{ article.thumbnail_content|mk2html|safe }}
+                {% load martortags %}
+                {{ article.thumbnail_content|safe_markdown|truncatewords_html:100 }}
             {% endif %}
         </div>
     </div>

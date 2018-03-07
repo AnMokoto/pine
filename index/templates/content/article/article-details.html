@@ -15,7 +15,7 @@
             </script>
             {% if article.tips %}
                 <div class="article-details-nav-tag">
-                    <span>{{ article.tips|upper|default:"" }}·{{ article.group_name|upper|default:"" }}</span>
+                    <span>{{ article.tips|escape|upper|default:"" }}·{{ article.group_name|escape|upper|default:"" }}</span>
                     <hr>
                 </div>
             {% endif %}
@@ -25,12 +25,12 @@
                 <div>
                     <img class="img-circle img-responsive"
                          src="{{ article.author.userprofile.avatar.url }}">
-                    <span>{{ article.author }}</span>
+                    <span>{{ article.author.username|force_escape }}</span>
                 </div>
             </div>
             <div class="article-details-box-right col-lg-10 col-md-10">
                 <div class="article-details-title">
-                    <span>{{ article.title }}</span>
+                    <span>{{ article.title|force_escape }}</span>
                 </div>
                 <hr class="article-details-lines">
                 <div class="article-details-title-sub">
@@ -45,8 +45,8 @@
                     </div>
                 </div>
                 <div class="article-details-body">
-                    {% load  mk %}
-                    {{ article.content|mk2html|safe }}
+                    {% load  martortags %}
+                    {{ article.content|safe_markdown }}
                 </div>
             </div>
         </div>

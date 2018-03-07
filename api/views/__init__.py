@@ -4,8 +4,6 @@
 from django.shortcuts import render
 
 from . import (
-    about,
-    skill,
     articles,
     business,
 )

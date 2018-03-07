@@ -8,11 +8,15 @@
         </a>
     </div>
     <div class="text-center" style="color: #99979c;">
+
         {% now 'Y' as current_year %}
-        <h6>Thanks <a href="https://www.djangoproject.com" target="_blank">Django-1.11.10</a>. <i
-                data-feather="heart" class="feather-foot"></i> Build with <a href="{% url 'home:about' 'L' %}">@L</a>.
-            ©{{ current_year }}.
-            All Rights Reserved.</h6>
+        {% filter capfirst %}
+            <h6>©{{ current_year }}. All Rights Reserved. Build with <a href="{% url 'home:about' 'chinaume' %}">@L</a>.
+                <i data-feather="heart"
+                   class="feather-foot"></i> Source from <a href="https://github.com/dj-pine/pine"
+                                                            target="_blank">pine</a>. Thanks <a
+                        href="https://www.djangoproject.com" target="_blank">Django-1.11.10</a>.</h6>
+        {% endfilter %}
         <script>
             feather.replace()
         </script>

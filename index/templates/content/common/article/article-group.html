@@ -7,13 +7,13 @@
                 {% for adpp in business_adpp %}
                     {% if adpp.display %}
                         <div class="content-body-right-ad">
-                            <a href="{{ adpp.target|safe|default:"#" }}"
+                            <a href="{{ adpp.target|urlencode|default:"#" }}"
                                target="{% if adpp.target %}
                                     '_target'
                                 {% else %}
                                     '_self'
                                 {% endif %}">
-                                <img class="img-responsive" src="{{ adpp.url }}" alt="{{ adpp.desc }}">
+                                <img class="img-responsive" src="{{ adpp.url }}" alt="{{ adpp.desc|force_escape }}">
                             </a>
                         </div>
                     {% endif %}

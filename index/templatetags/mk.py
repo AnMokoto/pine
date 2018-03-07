@@ -7,28 +7,17 @@ from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 
 import markdown
-from markdown.extensions.wikilinks import WikiLinkExtension
+import config
 
-extensions = ['markdown.extensions.toc', 'tables',
-              WikiLinkExtension(base_url='https://en.wikipedia.org/wiki/',
-                                end_url='#Hyperlinks_in_wikis'),
-              'markdown.extensions.sane_lists',
-              # 'markdown.extensions.abbr',
-              # 'markdown.extensions.attr_list',
-              # 'markdown.extensions.def_list',
-              # 'markdown.extensions.fenced_code',
-              # 'markdown.extensions.footnotes',
-              # 'markdown.extensions.smart_strong',
-              'markdown.extensions.meta',
-              'markdown.extensions.nl2br',
-              'markdown.extensions.codehilite',
-              'markdown.extensions.extra',
-              'markdown.extensions.sane_lists',
-              'markdown.extensions.smarty',
-              'markdown.extensions.tables'
-              ]
+extensions = config.MARKDOWN_EXTENSIONS
 
 register = template.Library()
+
+"""
+这个mk暂时不用了,没有扩展，
+现在用martor
+https://github.com/agusmakmun/django-markdown-editor
+"""
 
 
 @register.filter(name='mk2html', is_safe=True)

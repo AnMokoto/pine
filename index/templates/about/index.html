@@ -7,197 +7,32 @@
 {% endblock %}
 
 {% block body %}
-    {# 主体body   #}
-    <div id="content" class="row">
-        <div class="col-lg-4 col-md-4 content-left">
-            <div class="about-info">
-                <div class="about-info-avatar">
-                    <img class="img-circle img-responsive"
-                         src="https://avatars2.githubusercontent.com/u/10859832?s=460&v=4"/>
-                </div>
-
-                <div class="about-info-name">
-                    {% ifchanged about.my_name %}
-                        <h1>{{ about.my_name }}</h1>
-                    {% endifchanged %}
-                </div>
-
-                <div class="about-info-job">
-                    {% ifchanged about.my_job %}
-                        <h3>{{ about.my_job }}</h3>
-                    {% endifchanged %}
-                </div>
-
-                <div class="about-info-introduce">
-                    {% ifchanged about.my_second %}
-                        <h4>{{ about.my_second| default_if_none:""}}</h4>
-                    {% endifchanged %}
-                </div>
+    <div class="content">
+        <div class="content-head-box">
+            <div class="content-head-no">
+                {{ author.userprofile.phone|force_escape }}
             </div>
-
-            <div class="about-address">
-                {% ifchanged about.my_other %}
-                    {{ about.my_other | linebreaks | default_if_none:"" }}
-                {% endifchanged %}
+            <div class="content-head-avatar">
+                <img class="img-responsive block-center" src="{{ author.userprofile.avatar.url|safe }}">
             </div>
-
-            <div class="about-footer">
-                {% include 'base/footer.html' %}
+            <div class="content-head-info">
+                <p>{{ author.username }}</p>
+                <p>{{ author.userprofile.occupation|title|force_escape }}
+                    · {{ author.email|force_escape }}</p>
             </div>
         </div>
-        <div class="col-lg-8 col-md-8 pull-right content-right">
-            {% if about %}
-                <div class="row" id="about">
-                    <div class="col-lg-7 col-md-7">
-                        <div class="page-header text-capitalize info-title">
-                            <img src="{% static 'images/icon/info.png' %}"
-                                 class="img-responsive" aria-owns="">
-                            <span>about</span>
-                        </div>
-                        <div class="info-body">
-                            {% ifchanged about.content %}
-                                {{ about.content | linebreaks | default_if_none:"" }}
-                            {% endifchanged %}
-                        </div>
-                    </div>
-
-                </div>
-            {% endif %}
-            {% if experience %}
-                <div id="experience">
-                    <div class="info-title page-header text-capitalize">
-                        <img src="{% static 'images/icon/experience.png' %}"
-                             class="img-responsive">
-                        <span>experience</span>
-                    </div>
-                    <div class="info-body">
-                        <ol>
-                            {% for item in experience %}
-                                {% if item.display %}
-                                    <li>
-                                        <div class="info-title" data-toggle="collapse"
-                                             data-target="#experience_{{ item.id }}">
-                                    <span class="glyphicon glyphicon-plus " aria-hidden="true"
-                                          id="glyphicon_{{ item.id }}"></span>
-                                            <span>{{ item.company }}</span>
-                                        </div>
-                                        <div class="collapse" id="experience_{{ item.id }}">
-                                            <ul>
-                                                <li>{{ item.start_date }}-{{ item.end_date|default_if_none:"至今" }}</li>
-                                                <li>{{ item.office }}</li>
-                                                <li>
-                                                    {{ item.content|linenumbers|linebreaks }}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                {% endif %}
-                            {% empty %}
-                                <h2>保密协议</h2>
-                            {% endfor %}
-                        </ol>
-                    </div>
-                </div>
-            {% endif %}
-            {% if skill %}
-                <div id="skill">
-                    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-                    <div class="info-title page-header text-capitalize">
-                        <img src="{% static 'images/icon/skill.png' %}"
-                             class="img-responsive">
-                        <span>skill</span>
-                    </div>
-                    <div class="info-body">
-                        <ol>
-                            {% for key,value in skill %}
-                                <li>
-                                    <div data-info="{{ value|cut:"u" }}">
-                                        <canvas class="skill_{{ key }}" id="skill_{{ key }}"></canvas>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ol>
-                    </div>
-                </div>
-            {% endif %}
-            {% if product %}
-                <div id="product">
-                    <div class="info-title page-header text-capitalize">
-                        <img src="{% static 'images/icon/product.png' %}"
-                             class="img-responsive">
-                        <span>product</span>
-                    </div>
-                    <div class="info-body">
-                        <div class="info-body-product">
-                            <ol>
-                                {% ifchanged product %}
-
-                                    {% for item in product %}
-                                        {% if item.display %}
-                                            <li>
-                                                <div>
-                                                    <a target="_blank" href="{{ item.content }}">
-                                                        <img src="{{ item.thumbnail }}"
-                                                             class="img-responsive">
-                                                    </a>
-                                                    <h5>{{ item.product|default_if_none:"" }}</h5>
-                                                </div>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                {% endifchanged %}
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-            {% if education %}
-                <div id="education">
-                    <div class="info-title page-header text-capitalize">
-                        <img src="{% static 'images/icon/education.png' %}"
-                             class="img-responsive">
-                        <span>education</span>
-                    </div>
-                    <div class="info-body">
-                        {% for item in education %}
-                            <div class="info-title" data-toggle="collapse" data-target="#education_{{ item.id }}">
-                                <span>{{ item.school }}</span>
-                            </div>
-                            <div class="collapse" id="#education_{{ item.id }}">
-                                <span>{{ item.start_date }}-{{ item.end_date|default_if_none:"至今" }} {{ item.content }}</span>
-                            </div>
-                        {% empty %}
-                            <h2>保密</h2>
-                        {% endfor %}
-                    </div>
-                </div>
+        <hr>
+        <div class="content-body-box">
+            {% if author.userprofile.details %}
+                {% load martortags %}
+                {{ author.userprofile.details | safe_markdown }}
             {% endif %}
         </div>
     </div>
+    {% include 'base/footer.html' %}
 {% endblock %}
 
 {% block script %}
     {{ block.super }}
     <script src="{% static 'js/about/index.js' %}" type="text/javascript"></script>
-    <script type="text/javascript">
-        (function () {
-            $("#skill .info-body ol").children("li").each(function (index, element) {
-                $(this).css({
-                    display: 'inline-block'
-                });
-                const div = $(this).children('div');
-                const data_info = eval(div.attr("data-info"));
-                div.addClass('skill_chart');
-                let labels = [], data = [], color = [];
-                for (let value of data_info) {
-                    labels.push(value.name);
-                    data.push(value.proficiency);
-                    color.push("#" + colors())
-                }
-                const canvas = div.find("canvas");
-                createChartLayout(canvas.attr('id'), labels, data, color)
-            })
-        })()
-    </script>
 {% endblock %}

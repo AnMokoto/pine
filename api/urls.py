@@ -10,8 +10,4 @@ app_name = 'api'
 urlpatterns = [
     # 默认接口主页
     url(r'^$', views.index, name='index'),
-
-    # api/skill
-    url(r'^skill/$', views.skill.skill, name='skill'),
-    url(r'^skill/(?P<name>\w+)/$', views.skill.skill, name='skill'),
 ]

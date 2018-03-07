@@ -2,7 +2,9 @@ from django.http.response import HttpResponse
 from django.http.request import QueryDict
 import json
 
-from api.models.skill import SkillGroup, Skill
+from users.models import (
+    SkillGroup, Skill
+)
 
 
 # Create your views here.

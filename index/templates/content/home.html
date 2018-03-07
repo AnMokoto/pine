@@ -27,7 +27,7 @@
                         </div>
                         <div class="lines-right">
                             {% ifchanged business_banner.desc %}
-                                {{ business_banner.desc|safe|linebreaks }}
+                                {{ business_banner.desc|force_escape|linebreaks }}
                             {% endifchanged %}
                         </div>
                     </div>

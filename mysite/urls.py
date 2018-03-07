@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^api/', include('api.urls', namespace='my-api')),
     url(r'', include('index.urls', namespace='my-home')),
     url(r'^admin/', admin.site.urls),
+    url(r'^martor/', include('martor.urls')),
 ]
 
 handler404 = index.error

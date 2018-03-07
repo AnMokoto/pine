@@ -1,229 +1,65 @@
-@import (less,optional) "../screen.less";
-@import (less,optional) "../foot.less";
+@import url("../base/media");
+@import url("../base/foot");
+@import url("https://fonts.googleapis.com/css?family=Libre+Barcode+39+Extended|Ubuntu+Mono:700|Ubuntu:500");
 
-/////////////////////////
+//font-family: 'Ubuntu', sans-serif;
+//font-family: 'Libre Barcode 39 Extended', cursive;
+//font-family: 'Ubuntu Mono', monospace;
 
-/////////////////////////
+.media-about(@scale:@scale-lg) {
+  .content {
+    padding: @content-padding-top * @scale @content-padding-left * @scale;
+    .content-head-box {
+      position: relative;
 
-.center-block() {
-  display: block;
-  margin-right: auto;
-  margin-left: auto
-}
+      .content-head-no {
+        font-family: 'Libre Barcode 39 Extended', cursive;
+        position: absolute;
+        font-size: 20pt * @scale;
+        top: 0;
+        right: 0;
+      }
 
-.font-style(@family:"OpenSans-Light",@color:white) {
-  color: @color;
-  text-align: center;
-  font-family: @family;
-  letter-spacing: 0;
-}
-
-//////////////////////////////////
-
-.index(@scale:1) {
-  .glyphicon {
-    font-size: 0.85em * @scale;
-  }
-  .content-left {
-    background: rgba(100, 80, 141, 1);
-    height: 100%;
-    padding: 0px;
-    position: fixed;
-
-  }
-
-  .content-right {
-    padding: 60px * @scale;
-  }
-
-  .about-info {
-    padding: 80px * @scale 65px * @scale 60px * @scale 65px * @scale;
-    width: 100%;
-    text-align: center;
-
-    .about-info-avatar {
-      float: none;
-      text-align: center;
-      .img-circle {
+      .content-head-avatar {
         width: 100px * @scale;
-        .center-block()
+        height: 100px * @scale;
+        margin: 0 auto;
       }
-    }
 
-    .about-info-name {
-      .center-block();
-      margin-top: 37px * @scale;
-      :first-child {
-        .font-style();
-      }
-    }
-
-    .about-info-job {
-      margin-top: 27px * @scale;
-      :first-child {
-        .font-style()
-      }
-    }
-
-    .about-info-introduce {
-      margin-top: 46px * @scale;
-      :first-child {
-        .font-style();
-        font-size: 1.68em * @scale;
-        opacity: 0.75;
-        line-height: 2em;
-      }
-    }
-  }
-
-  .about-address {
-    width: 100%;
-    padding: 42.5px * @scale 50.5px * @scale;
-    font-size: 1.285em * @scale;
-    text-align: center;
-    .center-block();
-
-    color: white;
-    background-color: rgba(255, 255, 255, 0.05);
-
-    vertical-align: middle;
-  }
-
-  .about-footer {
-    background: transparent;
-    width: 100%;
-    .center-block();
-    margin: 10px auto;
-
-    div > ul {
-      list-style: none;
-      padding: 0px;
-      li {
-        display: inline-block;
-        margin: 10px * @scale;
-      }
-    }
-  }
-
-  .info-about {
-
-  }
-
-  #about {
-    width: content-box;
-  }
-
-  .info-title {
-    font-size: 1.571em * @scale;
-    color: #64598D;
-    letter-spacing: 2px;
-    font-weight: bold;
-    > * {
-      display: inline-block;
-    }
-
-    > img {
-      width: 25pt*@scale;
-      .print_disable();
-    }
-  }
-
-  .info-body {
-    font-size: 1.142em * @scale;
-    color: #6E6E6E;
-    letter-spacing: 0;
-    line-height: 26px * @scale;
-
-    ol {
-      list-style: none;
-
-      li {
-        line-height: 50pt * @scale;
-      }
-    }
-
-    ul {
-      list-style: none;
-      li {
-        list-style: none;
-        line-height: 35pt * @scale;
-      }
-    }
-
-    .collapse {
-      .print_able();
-    }
-  }
-
-  .skill_chart {
-    width: 250px * @scale;
-
-  }
-
-  .info-body-product {
-    > ol {
-      list-style: none;
-
-      li {
-        .center-block();
-        display: inline-block;
-        width: 96px * @scale;
+      .content-head-info {
+        margin: 0 auto;
+        overflow: auto;
+        font-size: 12pt;
         text-align: center;
-        margin: 10px * @scale;
+        font-family: 'Ubuntu Mono', monospace;
+        :first-child {
+          font-size: 14pt;
+        }
       }
-      a > img {
-        .print_able();
-        visibility: visible;
-      }
+    }
+
+    .content-body-box {
+      overflow: auto;
+      font-family: 'Ubuntu', sans-serif;
+      margin: 0 auto;
     }
   }
 
 }
 
-.index-mobile() {
-
-  .content-left {
-    clear: both;
-    float: none;
-    width: 100%;
-    position: relative;
-    padding: 0px;
-  }
-
-  .content-right {
-    clear: both;
-    float: none;
-    width: 100%;
-    position: relative;
-  }
+@media @xs {
+  .media-about(@scale-xs)
 }
 
-#content {
-  width: 100%;
-  height: 100%;
+@media @sm {
+  .media-about(@scale-sm)
 }
 
-#education {
-  display: none;
+@media @md {
+  .media-about(@scale-md)
 }
 
-//////////
-
-//1920x1080
-@media all and(max-width: @screen-xs-max) {
-  .index(@scale-xs);
-  .index-mobile();
-}
-
-@media all and(min-width: @screen-sm-min) and (max-width: @screen-md-min) {
-  .index(@scale-sm);
-  .index-mobile();
-}
-
-@media all and(min-width: @screen-md-min) and (max-width: @screen-lg-min) {
-  .index(@scale-md)
-}
-
-@media all and(min-width: @screen-lg-min) {
-  .index(@scale-lg)
+//1280*820
+@media @lg {
+  .media-about(@scale-lg)
 }

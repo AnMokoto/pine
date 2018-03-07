@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
-    {#    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0">#}
-    <title>{% block title %}{{ title|upper }}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=urf-8"/>
+    <meta name="keywords" content="pine,dj-pine">
+    <meta name="author" content="chinaume">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0">
+    <title>{% block title %}{% trans title|title noop %}{% endblock %}</title>
+    <link href="{% static 'favicon/favicon.ico' %}" rel="icon" as="image" type="image/x-icon">
     {% block link %}
         <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
         <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
         <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
-        {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/codehilite.css' %}">
     {% endblock %}
     <script src="https://cdn.bootcss.com/feather-icons/4.6.0/feather.min.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-2281586336119440",
-            enable_page_level_ads: true
-        });
-    </script>
 </head>
 
 <body>
@@ -47,7 +45,7 @@
                 effect: "fadeIn",
                 threshold: 100
             })
-
+            {#$('img.marked-emoji').removeClass('img-responsive')#}
         })
     </script>
 {% endblock %}

@@ -3,17 +3,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
-
-
-def user_desc(instance, filename):
-    return "user/{0}/{1}".format(instance.user.id, filename)
-
+from martor.models import MartorField
+import sys
 
 GENDER_CHOICES = (
     (0, '男'),
     (1, '女'),
     (2, '保密')
 )
+
+
+def UserDesc(instance, filename):
+    return "user/{0}/{1}".format(instance.user.id, filename)
 
 
 @python_2_unicode_compatible
@@ -24,7 +25,9 @@ class UserProfile(models.Model):
     gender = models.IntegerField(verbose_name=u'性别', choices=GENDER_CHOICES, default='2',
                                  blank=False)
     phone = models.CharField(verbose_name=u'手机号码', max_length=20, default='', blank=True, null=False)
-    avatar = models.ImageField(verbose_name=u'头像', upload_to=user_desc, blank=True)
+    avatar = models.ImageField(verbose_name=u'头像', upload_to=UserDesc, blank=True)
+    occupation = models.CharField(verbose_name=u"工作类型", default=u"保密", max_length=20)
+    details = MartorField(verbose_name=u'个人介绍', default='', max_length=sys.maxsize)
 
     def __str__(self):
         return self.name
