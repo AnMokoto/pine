@@ -64,6 +64,12 @@
                 window.history.back()
                 $(window).unbind('scroll')
             })
+
+            $('a').attr({
+                'target': '_blank'
+            }).css({
+                'display': 'inline-block',
+            })
         })
     </script>
 {% endblock %}
