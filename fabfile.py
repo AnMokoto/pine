@@ -39,13 +39,14 @@ def publish(path='/home/www/pine/mysite'):
             print red('new version:%s' % ver)
             # with prefix('git'):
             run('git fetch')
+            run('git checkout master')
             run('git pull origin master')
             print green('Refresh complete.')
             fb.write(ver)
             fb.flush()
-            run('python manager.py makemigrations')
-            run('python manager.py migrate')
-            run('python manager.py collectstatic')
+            run('python manage.py makemigrations')
+            run('python manage.py migrate')
+            run('python manage.py collectstatic')
         fb.close()
 
 
