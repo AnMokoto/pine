@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // $('img.img-responsive').css({})
 
-    $('a').attr({
+    $('p a').attr({
         'target': '_blank'
     }).css({
         'display': 'inline-block',
