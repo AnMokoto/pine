@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo 'Fefresh beginning...'
 
 ver=version.txt
