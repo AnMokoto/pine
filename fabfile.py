@@ -60,12 +60,12 @@ def publish(debug):
         fb.close()
         ver = run("git rev-parse HEAD")
         if not old or ver != old:
-            run("git rev-parse HEAD > %s" % "version.txt")
             print red("old version:%s" % old)
             print red("new version:%s" % ver)
             # with prefix("git"):
             run("git pull origin %s" % branch)
             print green("Refresh complete.")
+            run("git rev-parse HEAD > %s" % "version.txt")
             run("python manage.py makemigrations")
             run("python manage.py migrate")
             run("python manage.py collectstatic")
