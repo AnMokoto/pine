@@ -11,7 +11,8 @@ for sitemap with module `index`
 
 
 class __Sitemap(Sitemap):
-    changefreq = 'weekly'
+    # changefreq = 'weekly'
+    changefreq = 'hourly'
 
 
 class _SitemapDetails(__Sitemap):
