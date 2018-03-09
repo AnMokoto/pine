@@ -51,7 +51,7 @@ def publish(debug):
     with cd(pa):
         print green("Refresh beginning ...")
         run("git fetch")
-        branch = "%s" % (debug and "dev" or "master")
+        branch = "%s" % (debug is True and "dev" or "master")
         run("git checkout %s" % branch)
 
         fb = StringIO()
