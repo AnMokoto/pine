@@ -41,7 +41,7 @@ envs = envs()
 
 
 @hosts("hk330", )
-def publish(debug):
+def publish(debug=True):
     """
     pull the lasted to the project
     :param debug: env
@@ -73,7 +73,7 @@ def publish(debug):
 
 
 @hosts("hk330", )
-def deploy(debug):
+def deploy(debug=True):
     """
     restart the nginx and others.
     :param debug: env
@@ -93,7 +93,7 @@ def deploy(debug):
 
 
 @hosts("hk330", )
-def task(debug):
+def task(debug=True):
     execute(publish, debug)
     execute(deploy, debug)
 
@@ -106,4 +106,4 @@ def restart():
 
 
 if __name__ == "__main__":
-    task(False)
+    task(True)
