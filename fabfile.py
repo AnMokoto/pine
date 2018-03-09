@@ -21,17 +21,34 @@ def push(loc, remote):
     put(loc, remote)
 
 
+@property
+def debug():
+    return '/var/www/pine'
+
+
+@property
+def release():
+    return '/home/www/pine/mysite'
+
+
+def path(isDebug=True):
+    if isDebug:
+        return debug
+    else:
+        return release
+
+
 @hosts('hk330', )
-def publish(path='/home/www/pine/mysite'):
+def publish(debug=True):
     """
     pull the lasted to the project
-    :param path: project path at remote server
+    :param debug: env
     :return: None
     """
-    with cd(path):
+    with cd(path(debug)):
         print green('Refresh beginning ...')
         fb = StringIO()
-        get(path + "/version.txt", fb)
+        get('%s/%s' % (path, "version.txt"), fb)
         old = fb.getvalue()
         ver = run('git rev-parse HEAD')
         if not old or ver != old:
@@ -39,8 +56,9 @@ def publish(path='/home/www/pine/mysite'):
             print red('new version:%s' % ver)
             # with prefix('git'):
             run('git fetch')
-            run('git checkout master')
-            run('git pull origin master')
+            branch = '%s' % (debug and 'dev' or 'master')
+            run('git checkout %s' % branch)
+            run('git pull origin %s' % branch)
             print green('Refresh complete.')
             fb.write(ver)
             fb.flush()
@@ -51,28 +69,33 @@ def publish(path='/home/www/pine/mysite'):
 
 
 @hosts('hk330', )
-def deploy(path='/home/www/pine/mysite'):
+def deploy(debug=True):
     """
     restart the nginx and others.
-    :param path: project path at remote server
+    :param debug: env
     :return: None
     """
-    with cd(path):
+    with cd(path(debug)):
         print green('Publish is beginning ...')
-        sudo('killall -9 uwsgi')
-        sudo('uwsgi uwsgi.ini')
+        uwsgi = '%s/%s' % (path(debug), 'uwsgi')
+        pids = run('ps -auxf | grep \'%s\' | awk \'{print $2}\'' % uwsgi).replace('\r\n',
+                                                                                  '\n').split('\n')
+        for pid in pids:
+            sudo('kill -s 9 %s' % pid)
+        # sudo('killall -9 uwsgi')
+        sudo('uwsgi %s' % uwsgi)
         sudo('service nginx restart')
         print green('Publish is complete.')
 
 
 @hosts('hk330', )
-def task(path='/home/www/pine/mysite'):
-    execute(publish, path)
-    execute(deploy, path)
+def task(debug=True):
+    execute(publish, debug)
+    execute(deploy, debug)
 
 
 @hosts('hk330', )
 def restart():
-    print red('Reboot will be restart after 10s ...')
-    reboot(wait=10)
+    print red('Reboot will be restart after 5s ...')
+    reboot(wait=5)
     print red('Reboot has been restart...')
