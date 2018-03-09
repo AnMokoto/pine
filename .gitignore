@@ -4,6 +4,7 @@ static/
 */settings.py
 fabfile.py
 domainlog-debug.log
+version.txt
 
 */migrations/
 *.sqlite3

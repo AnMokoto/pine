@@ -17,6 +17,7 @@
             </div>
             <div class="content-head-info">
                 <p>{{ author.username }}</p>
+                <p>{{ author.first_name }}{{ author.last_name }}</p>
                 <p>{{ author.userprofile.occupation|title|force_escape }}
                     · {{ author.email|force_escape }}</p>
             </div>
