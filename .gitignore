@@ -3,6 +3,7 @@
 static/
 */settings.py
 fabfile.py
+version.txt
 
 */migrations/
 *.sqlite3

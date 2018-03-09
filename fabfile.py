@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # coding=utf-8
+import sys
 from fabric.api import (
     cd, lcd, run, local, sudo, put, get,
 
@@ -22,6 +23,7 @@ def push(loc, remote):
 
 
 class envs(object):
+
     @property
     def debug(self):
         return "/var/www/pine"
@@ -31,20 +33,21 @@ class envs(object):
         return "/home/www/pine/mysite"
 
     def path(self, isDebug=True):
-        if isDebug:
-            return self.debug
-        else:
-            return self.release
+        print green(isDebug)
+        return isDebug is True and self.debug or self.release
+
+
+envs = envs()
 
 
 @hosts("hk330", )
-def publish(debug=True):
+def publish(debug):
     """
     pull the lasted to the project
     :param debug: env
     :return: None
     """
-    pa = envs().path(debug)
+    pa = envs.path(debug)
     with cd(pa):
         print green("Refresh beginning ...")
         run("git fetch")
@@ -70,13 +73,13 @@ def publish(debug=True):
 
 
 @hosts("hk330", )
-def deploy(debug=True):
+def deploy(debug):
     """
     restart the nginx and others.
     :param debug: env
     :return: None
     """
-    pa = envs().path(debug)
+    pa = envs.path(debug)
     with cd(pa):
         print green("Publish is beginning ...")
         uwsgi = "%s/%s" % (pa, "uwsgi.ini")
@@ -90,7 +93,7 @@ def deploy(debug=True):
 
 
 @hosts("hk330", )
-def task(debug=True):
+def task(debug):
     execute(publish, debug)
     execute(deploy, debug)
 
@@ -100,3 +103,7 @@ def restart():
     print red("Reboot will be restart after 5s ...")
     reboot(wait=5)
     print red("Reboot has been restart...")
+
+
+if __name__ == "__main__":
+    task(False)
