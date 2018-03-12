@@ -28,6 +28,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField(verbose_name=u'头像', upload_to=UserDesc, blank=True)
     occupation = models.CharField(verbose_name=u"工作类型", default=u"保密", max_length=20)
     details = MartorField(verbose_name=u'个人介绍', default='', max_length=sys.maxsize)
+    details_cn = MartorField(verbose_name=u'个人介绍', default='', max_length=sys.maxsize)
 
     def __str__(self):
         return self.name

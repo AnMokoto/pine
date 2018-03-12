@@ -1,0 +1,39 @@
+{% extends 'super.html' %}
+
+{% block link %}
+    {{ block.super }}
+    {% load static %}
+    <link rel="stylesheet/less" href="{% static 'less/about/index.less' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="content-head-box">
+            <div class="content-head-no">
+                {{ author.userprofile.phone|force_escape }}
+            </div>
+            <div class="content-head-avatar">
+                <img class="img-responsive block-center" src="{{ author.userprofile.avatar.url|safe }}">
+            </div>
+            <div class="content-head-info">
+                <p>{{ author.username }}</p>
+                <p>{{ author.first_name }}{{ author.last_name }}</p>
+                <p>{{ author.userprofile.occupation|title|force_escape }}
+                    · {{ author.email|force_escape }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="content-body-box">
+            {% if author.userprofile.details %}
+                {% load martortags %}
+                {{ author.userprofile.details_cn | safe_markdown }}
+            {% endif %}
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'js/about/index.js' %}" type="text/javascript"></script>
+{% endblock %}
