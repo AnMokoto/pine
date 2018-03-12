@@ -16,7 +16,7 @@ class Banner(models.Model):
     主页顶部封面
     """
     name = models.CharField(max_length=50, verbose_name=_(u"简介"), blank=True, null=True)
-    desc = models.CharField(max_length=100, verbose_name=_(u"广告语"), blank=True, null=True)
+    desc = models.TextField(max_length=100, verbose_name=_(u"广告语"), blank=True, null=True)
     express = models.FileField(verbose_name=_(u"图片地址Local"), upload_to=article_desc, blank=True, null=True)
     url = models.URLField(verbose_name=_(u"图片地址remote"), blank=True, null=True)
     update = models.DateTimeField(verbose_name=_(u"更新时间"), editable=False, auto_now=True)
@@ -31,7 +31,7 @@ class ADPP(models.Model):
     广告商爸爸
     """
     name = models.CharField(max_length=50, verbose_name=u"简介", blank=True, null=True)
-    desc = models.CharField(max_length=100, verbose_name=u"广告语", blank=True, null=True)
+    desc = models.TextField(max_length=100, verbose_name=u"广告语", blank=True, null=True)
     url = models.URLField(verbose_name=u"图片地址", blank=True, null=True)
     update = models.DateTimeField(verbose_name=u"更新时间", editable=False, auto_now=True)
     target = models.URLField(verbose_name=u"跳转地址", blank=True, null=True)
