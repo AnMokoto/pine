@@ -10,12 +10,12 @@ from django.shortcuts import get_object_or_404
 def about(request, name=None):
     author = users.get_user_by(Q(username=name) | Q(email=name))
     lang = request.GET.get("lang", None)
-    if lang == 'zh':
-        template = 'about/index_cn.html'
-    else:
-        template = 'about/index.html'
 
-    return render(request, template, {
-        'title': str(name),
-        'author': author
-    })
+    return render(request,
+                  'about/index.html',
+                  {
+                      'title': str(name),
+                      'author': author,
+                      'lang': str(lang),
+                      'local': 'zh'
+                  })

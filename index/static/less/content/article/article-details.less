@@ -72,18 +72,17 @@
 
         .article-details-title {
           font-family: PingFangSC-Medium;
-          font-size: 34px * @scale;
+          font-size: 25px;
           color: #3c3d41;
           //letter-spacing: -1.7px;
-          line-height: 57px * @scale;
+          line-height: 35px;
         }
 
         .article-details-lines {
           border: none;
-          height: 2px;
+          height: 1px;
           width: 100%;
-          margin-top: 19px;
-          margin-bottom: 13px;
+          margin: 10px auto;
           border-radius: 2px;
           stroke-linecap: round;
           stroke-linejoin: round;
@@ -119,9 +118,11 @@
 
             span {
               margin-left: 6px * @scale;
-              font-size: 16px;
-              line-height: 24px;
-              overflow: hidden;
+              font-size: 12px;
+              overflow: auto;
+              position: relative;
+              top: 0;
+              alignment-baseline: top;
               -webkit-margin-start: 6px * @scale;
               -webkit-align-content: center;
             }
@@ -129,8 +130,8 @@
         }
 
         .feather-article-details {
-          width: 20px;
-          height: 20px;
+          width: 15px;
+          height: 15px;
           stroke: @svg-color;
           stroke-width: 2;
           stroke-linecap: round;

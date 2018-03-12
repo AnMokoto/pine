@@ -2,7 +2,7 @@
 
     <div class="article-item-content">
         <div class="article-item-title" data="{% url 'home:details' article.id %}">
-            <span>{{ article.title|truncatechars:20|force_escape }}</span>
+            <span>{{ article.title|force_escape }}</span>
         </div>
         <hr class="article-item-lines">
         <div class="article-item-title-sub">

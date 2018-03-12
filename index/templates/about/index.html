@@ -26,7 +26,12 @@
         <div class="content-body-box">
             {% if author.userprofile.details %}
                 {% load martortags %}
-                {{ author.userprofile.details | safe_markdown }}
+                {% ifequal lang local %}
+                    {{ author.userprofile.details_cn | safe_markdown }}
+                {% else %}
+                    {{ author.userprofile.details | safe_markdown }}
+                {% endifequal %}
+
             {% endif %}
         </div>
     </div>

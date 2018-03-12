@@ -3,26 +3,26 @@
 .media-article-item-0(@scale:@scale-lg) {
 
   .article-item-content {
-    margin-bottom: @content-padding-top;
+    margin-bottom: 10px;
+    padding: 8px;
 
     .article-item-title {
       font-family: PingFangSC-Medium;
-      font-size: 34px * @scale;
+      font-size: 24px;
       color: #3c3d41;
       //letter-spacing: -1.7px;
-      line-height: 57px * @scale;
+      line-height: 35px;
 
-      span:hover, p:hover {
+      &:hover {
         text-shadow: 0 0 2px orange;
       }
     }
 
     .article-item-lines {
       border: none;
-      height: 2px;
+      height: 1px;
       width: 100%;
-      margin-top: 12px;
-      margin-bottom: 10px;
+      margin: 10px auto;
       border-radius: 2px;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -58,9 +58,11 @@
 
         span {
           margin-left: 6px * @scale;
-          font-size: 16px;
-          line-height: 24px;
-          overflow: hidden;
+          font-size: 12px;
+          overflow: auto;
+          position: relative;
+          top: 0;
+          alignment-baseline: top;
           -webkit-margin-start: 6px * @scale;
           -webkit-align-content: center;
         }
@@ -68,8 +70,8 @@
     }
 
     .feather-article-item {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       stroke: @svg-color;
       stroke-width: 2;
       stroke-linecap: round;
@@ -86,7 +88,7 @@
     font-size: 18px;
     color: #666d70;
     letter-spacing: 0;
-    margin-top: 20px;
+    margin-top: 5px;
     display: block;
     position: relative;
     overflow: auto;

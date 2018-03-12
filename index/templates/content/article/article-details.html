@@ -43,6 +43,9 @@
                         <i data-feather="eye"></i>
                         <span>{{ article.numerous|default:"100" }}</span>
                     </div>
+                    <script>
+                        feather.replace({class: 'feather-article-details'})
+                    </script>
                 </div>
                 <div class="article-details-body">
                     {% load  martortags %}
@@ -58,7 +61,6 @@
 {% block script %}
     {{ block.super }}
     <script>
-        feather.replace({class: 'feather-article-details'})
         $(document).ready(function () {
             $(".feather-nav").click(function () {
                 window.history.back()
