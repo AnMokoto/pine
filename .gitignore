@@ -1,6 +1,5 @@
 .idea/*
 .DS_Store
-static/
 */settings.py
 fabfile.py
 domainlog-debug.log
