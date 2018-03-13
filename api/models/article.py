@@ -46,3 +46,7 @@ class Article(models.Model):
 
     def group_name(self):
         return self.group.__str__()
+
+    def increase_views(self):
+        self.numerous += 1
+        self.save(update_fields=['numerous'])

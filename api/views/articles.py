@@ -8,8 +8,7 @@ from api.models.article import Article, ArticleGroup
 def ArticleDetails(request, id=1):
     article = get_object_or_404(Article, pk=id)
     if article and article.display:
-        article.numerous += 1
-        article.save()
+        article.increase_views()  # 增加阅读数
     return article
 
 
