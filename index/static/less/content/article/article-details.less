@@ -3,6 +3,7 @@
 
 .media-article-details(@scale:@scale-lg) {
 
+  @transition-duration: 500ms;
   .article-details-content {
     padding-left: @content-padding-left * @scale;
     padding-right: @content-padding-right * @scale;
@@ -47,7 +48,7 @@
       .article-details-box-left {
         text-align: center;
 
-        div {
+        .article-details-box-left-auth {
           width: 110px * @scale;
 
           img {
@@ -81,7 +82,6 @@
         .article-details-lines {
           border: none;
           height: 1px;
-          width: 100%;
           margin: 10px auto;
           border-radius: 2px;
           stroke-linecap: round;
@@ -142,6 +142,85 @@
       }
     }
 
+    .article-details-toc {
+      height: 100%;
+      min-width: 18%;
+      padding-top: @content-padding-top + 38px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      float: left;
+      overflow: auto;
+      background: #3c3d41;
+      padding-right: 20px;
+      transform: translateX(-100%);
+      transition-duration: @transition-duration;
+
+      ul {
+        color: @svg-color;
+        //list-style: circle;
+        list-style: decimal;
+        ul {
+          list-style: square;
+
+        }
+      }
+
+      li:hover {
+        //color: #337ab7;
+        color: @svg-color-hover;
+      }
+
+      a {
+        color: @svg-color;
+        &:hover {
+          //color: #337ab7;
+          color: @svg-color-hover;
+        }
+      }
+    }
+    .article-details-nav-box {
+      position: absolute;
+      width: 30px;
+      text-align: center;
+      overflow: auto;
+      z-index: 10;
+      top: 0;
+      height: @content-padding-top;
+
+      div {
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      .navbar-menu-box {
+        border: none;
+        height: 4px;
+        width: 25px;
+        margin: 5px auto 0px;
+        border-radius: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        background: @svg-color;
+        transform-origin: 0 50%;
+        transition-duration: @transition-duration;
+      }
+    }
+
+    .feather-toc {
+      z-index: 10;
+      width: 30px;
+      height: 30px;
+      stroke: #FFF;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      .svg-hover;
+    }
+
   }
 
 }
@@ -150,7 +229,6 @@
   .media-article-details(@scale-xs);
   .article-details-box-left {
     display: none;
-
   }
 }
 
@@ -158,8 +236,8 @@
   .media-article-details(@scale-sm);
   .article-details-box-left {
     display: none;
-
   }
+
 }
 
 @media @md {

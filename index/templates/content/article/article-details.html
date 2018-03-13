@@ -9,10 +9,6 @@
 {% block body %}
     <div class="article-details-content">
         <div class="article-details-nav">
-            <i data-feather="x"></i>
-            <script>
-                feather.replace({class: 'feather-nav'})
-            </script>
             {% if article.tips %}
                 <div class="article-details-nav-tag">
                     <span>{{ article.tips|escape|upper|default:"" }}·{{ article.group_name|escape|upper|default:"" }}</span>
@@ -22,7 +18,7 @@
         </div>
         <div class="article-details-box">
             <div class="article-details-box-left col-lg-2 col-md-2">
-                <div>
+                <div class="article-details-box-left-auth">
                     <img class="img-circle img-responsive"
                          src="{{ article.author.userprofile.avatar.url }}">
                     <span>{{ article.author.username|force_escape }}</span>
@@ -53,6 +49,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="article-details-toc">
+            {% load mk %}
+            {{ article.content|toc }}
+        </div>
+        <div class="article-details-nav-box">
+            <div>
+                <hr class="navbar-menu-box">
+                <hr class="navbar-menu-box">
+                <hr class="navbar-menu-box">
+            </div>
+        </div>
     </div>
     {% include 'base/footer.html' %}
 {% endblock %}
@@ -60,19 +68,5 @@
 
 {% block script %}
     {{ block.super }}
-    <script>
-        $(document).ready(function () {
-            $(".feather-nav").click(function () {
-                window.history.back()
-                $(window).unbind('scroll')
-            })
-
-            $('p a').attr({
-                'target': '_blank'
-            }).css({
-                'display': 'inline-block',
-                'margin': '2px'
-            })
-        })
-    </script>
+    <script src="{% static 'js/content/article/article-details.js' %}"></script>
 {% endblock %}

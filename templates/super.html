@@ -42,7 +42,13 @@
                 effect: "fadeIn",
                 threshold: 100
             })
-            {#$('img.marked-emoji').removeClass('img-responsive')#}
+
+            $('p a').attr({
+                'target': '_blank'
+            }).css({
+                'display': 'inline-block',
+                'margin': '2px',
+            })
         })
     </script>
 {% endblock %}

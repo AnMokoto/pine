@@ -25,14 +25,25 @@ $(document).ready(function () {
     })
 
     let navbar_menu = false;
-    let navbar_select = ['menu-bar-top', 'menu-bar-middle', 'menu-bar-bottom']
 
     $('.navbar-menu').click(function () {
         $(this).children().each(function (index) {
-            if (navbar_menu) {
-                $(this).removeClass(navbar_select[index])
-            } else {
-                $(this).addClass(navbar_select[index])
+            switch (index) {
+                case 0:
+                    $(this).css({
+                        'transform': navbar_menu ? 'rotate(0deg)' : 'rotate(45deg)',
+                    })
+                    break;
+                case 1:
+                    $(this).css({
+                        'opacity': navbar_menu ? 1 : 0,
+                    })
+                    break;
+                case 2:
+                    $(this).css({
+                        'transform': navbar_menu ? 'rotate(0deg)' : 'rotate(-45deg)',
+                    })
+
             }
         })
         navbar_menu = !navbar_menu;

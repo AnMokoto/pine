@@ -2,6 +2,7 @@
 
 @navbar-height: @content-padding-top;
 @navbar-zindex: 10;
+@transition-duration: 500ms;
 
 .media-nav(@scale:@scale-lg) {
   .navbar-customize {
@@ -40,23 +41,8 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       background: @svg-color;
-    }
-
-    @transition-duration: 500ms;
-
-    .menu-bar-top {
-      transform: rotate(45deg);
       transform-origin: 0 50%;
       transition-duration: @transition-duration;
-    }
-    .menu-bar-middle {
-      opacity: 0;
-      transition-duration: @transition-duration;
-    }
-    .menu-bar-bottom {
-      transition-duration: @transition-duration;
-      transform: rotate(-45deg);
-      transform-origin: 0 50%;
     }
 
   }
