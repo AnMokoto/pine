@@ -15,14 +15,53 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+import json, os
+from django.utils.translation import ugettext_lazy as _
+
 from index.views import index
+
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+@login_required
+def markdown_uploader(request):
+    """
+       Makdown image upload for uploading to imgur.com
+       and represent as json to markdown editor.
+       """
+    try:
+        if request.method == 'POST' and request.is_ajax():
+            if 'markdown-image-upload' in request.FILES:
+                image = request.FILES['markdown-image-upload']
+                local = 'markdown/%s' % image.name
+                default_storage.save(os.path.join(settings.MEDIA_ROOT, local),
+                                     ContentFile(image.read()))
+                return HttpResponse(json.dumps({
+                    'status': 200,
+                    'link': os.path.join(settings.MEDIA_URL, local),
+                    'name': image.name
+                }), content_type='application/json')
+    except Exception as e:
+        print(e)
+    return HttpResponse(_('Invalid request!'))
+
 
 urlpatterns = [
     url(r'^api/', include('api.urls', namespace='my-api')),
     url(r'', include('index.urls', namespace='my-home')),
     url(r'^admin/', admin.site.urls),
-    url(r'^martor/', include('martor.urls')),
+    url(r'^martor/uploader/$', markdown_uploader, name='imgur_uploader'),
+    url(r'^martor/', include('martor.urls'), ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = index.error
 handler403 = index.error
