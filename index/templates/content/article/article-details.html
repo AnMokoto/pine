@@ -43,14 +43,13 @@
                         feather.replace({class: 'feather-article-details'})
                     </script>
                 </div>
-                <div class="article-details-body">
+                <div class="article-details-body markdown-body">
                     {% load  martortags %}
                     {{ article.content|safe_markdown }}
                 </div>
             </div>
         </div>
-
-        <div class="article-details-toc">
+        <div class="article-details-toc markdown-body">
             {% load mk %}
             {{ article.content|toc }}
         </div>

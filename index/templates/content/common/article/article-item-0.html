@@ -2,7 +2,7 @@
 
     <div class="article-item-content">
         <div class="article-item-title" data="{% url 'home:details' article.id %}">
-            <span>{{ article.title|force_escape }}</span>
+            <span>{{ article.title|capfirst|force_escape }}</span>
         </div>
         <hr class="article-item-lines">
         <div class="article-item-title-sub">
@@ -19,7 +19,7 @@
                 feather.replace({class: 'feather-article-item'})
             </script>
         </div>
-        <div class="article-item-content-0">
+        <div class="article-item-content-0 markdown-body">
             {% if article.thumbnail_content %}
                 {# markdown #}
                 {% load martortags %}
