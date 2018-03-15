@@ -48,4 +48,10 @@ $(document).ready(function () {
 
     if ($('.toc ul li').length > 0)
         setTimeout("$('.article-details-nav-box div').click()", 500);
+
+
+    $('img').css({
+        'display': 'inline-block',
+        'margin': '2px',
+    })
 })
