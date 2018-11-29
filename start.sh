@@ -37,8 +37,8 @@ moveToPublish
 
 echo 'Fefresh over.it was completed.Now,ready to publish ...'
 echo '----------------------------------------------------'
-echo `sudo killall -9 uwsig`
-echo `sudo uwsig uwsig.ini`
+echo `sudo killall -9 uwsgi`
+echo `sudo uwsgi uwsgi.ini`
 echo `sudo service nginx restart`
 echo '----------------------------------------------------'
 echo 'Publish was completed.'
